@@ -155,5 +155,21 @@
   </div>
 </footer>
   <script src="script.js"></script>
+<script>
+(() => {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  let timeout;
+  window.addEventListener('scroll', () => {
+    header.classList.add('is-scrolling');
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      header.classList.remove('is-scrolling');
+    }, 120);
+  }, { passive: true });
+})();
+</script>
+
 </body>
 </html>
