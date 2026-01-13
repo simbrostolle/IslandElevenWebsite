@@ -17,14 +17,25 @@ html,body{height:100%}
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+  /* Tropical paradise background */
   background:
-    radial-gradient(1200px 650px at 10% 0%, rgba(242,140,24,.18), transparent 55%),
-    radial-gradient(900px 520px at 90% 5%, rgba(30,123,214,.18), transparent 55%),
-    radial-gradient(800px 520px at 70% 95%, rgba(27,176,122,.14), transparent 55%),
-    var(--bg);
-  color:var(--text);
-  line-height:1.55;
+    linear-gradient(
+      180deg,
+      rgba(246,251,255,0.65),
+      rgba(246,251,255,0.78)
+    ),
+    url("assets/CaribbeanBG.jpg");
+
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: var(--text);
+  line-height: 1.55;
 }
+
 
 a{color:inherit;text-decoration:none}
 a:hover{opacity:.92}
@@ -119,9 +130,12 @@ header{
   border:1px solid var(--border);
   border-radius: var(--radius);
   overflow:hidden;
-  background: var(--card);
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: var(--shadow);
 }
+
 .heroMedia{
   position:relative;
   min-height: 420px;
@@ -183,11 +197,14 @@ header{
 
 .card{
   border:1px solid var(--border);
-  background: var(--card);
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: var(--radius);
   padding:18px;
   box-shadow: var(--shadow);
 }
+
 .sideCard{padding:22px; display:flex; flex-direction:column; gap:14px}
 
 .grid3{display:grid; grid-template-columns: repeat(3,1fr); gap:14px}
