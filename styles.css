@@ -275,7 +275,7 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
 /* =========================
    HERO (HOME)
    ========================= */
-.hero{padding: 22px 0 10px}
+.hero{padding: 10px 0 10px}
 .heroGrid{
   display:grid;
   grid-template-columns: 1.15fr .85fr;
