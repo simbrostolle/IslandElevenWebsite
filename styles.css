@@ -88,10 +88,13 @@ img{max-width:100%; display:block}
 }
 
 .logo-lg{
-  width: 120px;
+  width: 220px;
   max-width: 92vw;
   height: auto;
+  display: block;
+  margin: 0 auto;
 }
+
 
 .palm-accent{
   position:absolute;
@@ -177,8 +180,12 @@ img{max-width:100%; display:block}
 }
 
 .site-header.is-collapsed .logo-lg{
-  width: 56px;
+  width: 72px;
+  padding: 6px;
+  border-radius: 16px;
+  box-shadow: 0 10px 22px rgba(2,10,26,.12);
 }
+
 
 .site-header.is-collapsed .brand-title{
   font-size: 16px;
