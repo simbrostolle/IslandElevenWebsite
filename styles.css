@@ -151,18 +151,23 @@ header{
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:saturate(1.08) contrast(1.02);
+  filter:saturate(1.08) contrast(1.02) brightness(1.02);
+  transform: scale(1.02);
 }
 .heroOverlay{
-  position:absolute; inset:0;
-  /* darker/cleaner overlay so text always reads */
+  position:absolute;
+  inset:0;
+
+  /* Keep image visible, add darkness only where text sits */
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,0.35) 0%,
-      rgba(255,255,255,0.78) 45%,
-      rgba(255,255,255,0.94) 100%
+      rgba(0,0,0,0.00) 0%,
+      rgba(0,0,0,0.10) 55%,
+      rgba(0,0,0,0.28) 100%
     );
+}
+
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -173,14 +178,18 @@ header{
   gap:14px;
 }
 .heroContentInner{
-  background: rgba(255,255,255,0.78);
-  border: 1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,0.80);
+  border: 1px solid rgba(255,255,255,0.55);
   border-radius: 16px;
   padding: 14px 14px 16px;
-  box-shadow: 0 14px 34px rgba(2,10,26,.10);
+
+  box-shadow: 0 18px 40px rgba(2,10,26,.18);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+
+  max-width: 560px; /* keeps it from covering too much image */
 }
+
 
 .kicker{
   display:inline-flex; align-items:center; gap:10px;
@@ -328,17 +337,21 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
   .nav{flex-wrap:wrap}
   .brand{min-width:auto}
   .heroMedia{
-  min-height: 520px;
+  min-height: 440px;
 }
-
 .heroContent{
-  padding: 16px;
-}
-
-.heroContentInner{
   padding: 14px;
 }
-
+.heroContentInner{
+  max-width: 100%;
+  background: rgba(255,255,255,0.88);
+}
+header, .site-header{
+  margin-bottom: -18px;
+}
+.heroActions{
+  justify-content: center;
+}
 .heroSub{
   font-size: 15px;
 }
