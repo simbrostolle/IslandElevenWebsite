@@ -1,5 +1,6 @@
 (function () {
   const header = document.querySelector(".site-header");
+  const spacer = document.querySelector(".header-spacer");
   if (!header) return;
 
   // Active nav link
@@ -10,23 +11,24 @@
     });
   }
 
-  // --- Sticky + collapse with hysteresis (prevents flicker) ---
   const STICKY_AT = 6;
-
-  // Collapse when scrolling DOWN past this
   const COLLAPSE_AT = 160;
-
-  // Expand when scrolling UP above this (lower than collapse threshold)
   const EXPAND_AT = 90;
 
   let isCollapsed = false;
   let ticking = false;
+
+  const syncSpacer = () => {
+    if (!spacer) return;
+    spacer.style.height = header.offsetHeight + "px";
+  };
 
   const update = () => {
     const y = window.scrollY || document.documentElement.scrollTop;
 
     header.classList.toggle("is-sticky", y > STICKY_AT);
 
+    // Toggle collapsed state
     if (!isCollapsed && y > COLLAPSE_AT) {
       isCollapsed = true;
       header.classList.add("is-collapsed");
@@ -34,6 +36,9 @@
       isCollapsed = false;
       header.classList.remove("is-collapsed");
     }
+
+    // After classes apply, measure the new header height and set spacer
+    requestAnimationFrame(syncSpacer);
 
     ticking = false;
   };
@@ -44,7 +49,10 @@
     requestAnimationFrame(update);
   };
 
-  // Initial paint
+  // Initial paint + keep spacer correct on resize/load
+  syncSpacer();
   update();
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", () => requestAnimationFrame(syncSpacer));
+  window.addEventListener("load", () => requestAnimationFrame(syncSpacer));
 })();
