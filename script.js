@@ -10,11 +10,10 @@
     });
   }
 
-  // Sticky + collapse on scroll
+  // Simple sticky shadow only (NO collapsing)
   const onScroll = () => {
     const y = window.scrollY || document.documentElement.scrollTop;
-    header.classList.toggle('is-sticky', y > 6);
-    header.classList.toggle('is-collapsed', y > 140);
+    header.classList.toggle('is-sticky', y > 8);
   };
 
   onScroll();
