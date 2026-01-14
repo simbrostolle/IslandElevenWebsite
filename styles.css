@@ -327,6 +327,22 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
   .tile{grid-column: span 12}
   .nav{flex-wrap:wrap}
   .brand{min-width:auto}
+  .heroMedia{
+  min-height: 520px;
+}
+
+.heroContent{
+  padding: 16px;
+}
+
+.heroContentInner{
+  padding: 14px;
+}
+
+.heroSub{
+  font-size: 15px;
+}
+
 }
 
 /* =========================
