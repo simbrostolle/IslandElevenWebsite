@@ -10,14 +10,10 @@
     });
   }
 
-  // --- Sticky + collapse with hysteresis (prevents flicker) ---
-  const STICKY_AT = 6;
-
-  // Collapse when scrolling DOWN past this
-  const COLLAPSE_AT = 160;
-
-  // Expand when scrolling UP above this (lower than collapse threshold)
-  const EXPAND_AT = 90;
+  // Collapse quickly, expand only when near the top (prevents flicker)
+  const STICKY_AT = 2;
+  const COLLAPSE_AT = 20;
+  const EXPAND_AT = 5;
 
   let isCollapsed = false;
   let ticking = false;
@@ -44,7 +40,6 @@
     requestAnimationFrame(update);
   };
 
-  // Initial paint
   update();
   window.addEventListener("scroll", onScroll, { passive: true });
 })();
