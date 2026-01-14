@@ -151,22 +151,21 @@ header{
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:saturate(1.08) contrast(1.02) brightness(1.02);
-  transform: scale(1.02);
+  filter: saturate(1.25) contrast(1.12) brightness(1.03);
 }
+
 .heroOverlay{
   position:absolute;
   inset:0;
-
-  /* Keep image visible, add darkness only where text sits */
   background:
     linear-gradient(
       180deg,
-      rgba(0,0,0,0.00) 0%,
-      rgba(0,0,0,0.10) 55%,
-      rgba(0,0,0,0.28) 100%
+      rgba(0,0,0,0.05) 0%,
+      rgba(0,0,0,0.15) 60%,
+      rgba(0,0,0,0.35) 100%
     );
 }
+
 
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -178,18 +177,14 @@ header{
   gap:14px;
 }
 .heroContentInner{
-  background: rgba(255,255,255,0.80);
-  border: 1px solid rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.85);
   border-radius: 16px;
-  padding: 14px 14px 16px;
-  align-items: flex-start;
-  box-shadow: 0 18px 40px rgba(2,10,26,.18);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: inline-block;      /* hugs content */
-  width: fit-content;         /* prevents full-width panel */
-  max-width: min(560px, 100%);/* keep it responsive */
+  padding: 16px 18px;
+  max-width: 560px;
+  box-shadow: 0 20px 44px rgba(0,0,0,.25);
+  backdrop-filter: blur(8px);
 }
+
 
 
 .kicker{
@@ -536,40 +531,6 @@ header, .site-header{
   box-shadow: 0 10px 26px rgba(2,10,26,.10);
 }
 
-.site-header.is-collapsed .header-stack{
-  padding: 10px 0 10px;
-  gap: 8px;
-}
-
-.site-header.is-collapsed .logo-wrap{
-  width: 66px;
-  height: 66px;
-}
-
-.site-header.is-collapsed .logo-lg{
-  width: 56px;
-  padding: 6px;
-  border-radius: 16px;
-  box-shadow: 0 10px 22px rgba(2,10,26,.12);
-}
-
-.site-header.is-collapsed .palm-accent{
-  inset:-6px;
-  opacity: .7;
-}
-
-.site-header.is-collapsed .brand-title{
-  font-size: 16px;
-  letter-spacing: .8px;
-}
-
-.site-header.is-collapsed .brand-sub{
-  display:none;
-}
-
-.site-header.is-collapsed .header-actions{
-  display:none;
-}
 
 /* Keep nav visible when collapsed */
 .site-header.is-collapsed .main-nav a{
