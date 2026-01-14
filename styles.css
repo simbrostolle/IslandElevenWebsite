@@ -155,7 +155,16 @@ header{
 }
 .heroOverlay{
   position:absolute; inset:0;
-  background: linear-gradient(90deg, rgba(255,255,255,.86), rgba(255,255,255,.20) 55%, rgba(255,255,255,.35));
+  /* darker/cleaner overlay so text always reads */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.35) 0%,
+      rgba(255,255,255,0.78) 45%,
+      rgba(255,255,255,0.94) 100%
+    );
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 .heroContent{
   position:absolute; inset:0;
@@ -163,6 +172,16 @@ header{
   display:flex; flex-direction:column; justify-content:flex-end;
   gap:14px;
 }
+.heroContentInner{
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(15,23,42,.10);
+  border-radius: 16px;
+  padding: 14px 14px 16px;
+  box-shadow: 0 14px 34px rgba(2,10,26,.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
 .kicker{
   display:inline-flex; align-items:center; gap:10px;
   color:var(--muted);
