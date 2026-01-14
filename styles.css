@@ -182,12 +182,13 @@ header{
   border: 1px solid rgba(255,255,255,0.55);
   border-radius: 16px;
   padding: 14px 14px 16px;
-
+  align-items: flex-start;
   box-shadow: 0 18px 40px rgba(2,10,26,.18);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
-  max-width: 560px; /* keeps it from covering too much image */
+  display: inline-block;      /* hugs content */
+  width: fit-content;         /* prevents full-width panel */
+  max-width: min(560px, 100%);/* keep it responsive */
 }
 
 
@@ -493,6 +494,22 @@ header, .site-header{
   flex-wrap: wrap;
   justify-content:center;
 }
+
+/* Smooth collapse/expand */
+.site-header,
+.header-stack,
+.logo-wrap,
+.logo-lg,
+.brand-title,
+.main-nav a{
+  transition: all 220ms ease;
+}
+
+/* reduce "jumpiness" on scroll */
+.site-header{
+  will-change: transform;
+}
+
 
 @keyframes popIn{
   from{transform: translateY(-6px) scale(.96); opacity:0}
