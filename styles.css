@@ -123,6 +123,7 @@ header{
 
 .hero{
   margin-top: 24px;
+  margin-bottom: 0;
 }
 
 .hero{padding:34px 0 10px}
@@ -146,6 +147,7 @@ header{
   position:relative;
   min-height: 420px;
   background:#e6f2ff;
+  display: block;
 }
 .heroMedia img{
   width:100%;
