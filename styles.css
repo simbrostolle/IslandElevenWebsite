@@ -175,8 +175,7 @@ header{
 }
 
 
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+
 }
 .heroContent{
   position:absolute; inset:0;
@@ -545,6 +544,35 @@ header, .site-header{
   padding: 7px 10px;
   font-size: 13px;
 }
+
+/* ==== HERO FIX (override) ==== */
+.heroMedia{
+  position: relative !important;
+  overflow: hidden !important;
+  background: #e6f2ff !important;
+}
+
+.heroMedia img{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  transform: none !important;
+}
+
+.heroOverlay{
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.05) 0%,
+    rgba(0,0,0,0.15) 60%,
+    rgba(0,0,0,0.35) 100%
+  ) !important;
+}
+
 
 /* Mobile */
 @media (max-width: 768px){
