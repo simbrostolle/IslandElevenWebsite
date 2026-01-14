@@ -1,71 +1,46 @@
 (function () {
-  const header = document.querySelector(".site-header");
+  const header = document.querySelector('.site-header');
+  const spacer = document.querySelector('.header-spacer');
   if (!header) return;
 
   // Active nav link
-  const page = document.body.getAttribute("data-page");
+  const page = document.body.getAttribute('data-page');
   if (page) {
-    document.querySelectorAll(".main-nav a").forEach((a) => {
-      if (a.getAttribute("data-nav") === page) a.classList.add("active");
+    document.querySelectorAll('.main-nav a').forEach(a => {
+      if (a.getAttribute('data-nav') === page) a.classList.add('active');
     });
   }
 
-  // --- Helper: lock layout so header collapse doesn't "jump" content ---
-  const setBodyPadToHeader = () => {
-    // Use getBoundingClientRect for more reliable current height
-    const h = Math.round(header.getBoundingClientRect().height);
-    document.body.style.paddingTop = h + "px";
+  // Keep spacer height synced to header height (prevents mobile "jump")
+  const syncSpacer = () => {
+    if (!spacer) return;
+    spacer.style.height = header.offsetHeight + 'px';
   };
 
-  // Initial: lock to current header height
-  setBodyPadToHeader();
-
-  // Recompute on resize/orientation change (mobile)
-  window.addEventListener("resize", () => {
-    // Let the browser finish layout first
-    requestAnimationFrame(setBodyPadToHeader);
-  });
-
-  // Sticky + collapse (stable thresholds, no flicker)
-  const STICKY_AT = 2;
-  const COLLAPSE_AT = 80; // collapse a bit later to avoid instant jump feeling
-  const EXPAND_AT = 10;
-
-  let isCollapsed = false;
-  let ticking = false;
-
-  const update = () => {
-    const y = window.scrollY || document.documentElement.scrollTop;
-
-    header.classList.toggle("is-sticky", y > STICKY_AT);
-
-    let changed = false;
-
-    if (!isCollapsed && y > COLLAPSE_AT) {
-      isCollapsed = true;
-      header.classList.add("is-collapsed");
-      changed = true;
-    } else if (isCollapsed && y < EXPAND_AT) {
-      isCollapsed = false;
-      header.classList.remove("is-collapsed");
-      changed = true;
-    }
-
-    // If header height changed, update body padding after class applies
-    if (changed) requestAnimationFrame(setBodyPadToHeader);
-
-    ticking = false;
-  };
+  // Collapse logic with hysteresis (prevents desktop flicker)
+  let collapsed = false;
+  const COLLAPSE_AT = 60;   // collapse quickly
+  const EXPAND_AT = 10;     // expand only very near top
 
   const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(update);
+    const y = window.scrollY || document.documentElement.scrollTop;
+
+    header.classList.toggle('is-sticky', y > 2);
+
+    if (!collapsed && y > COLLAPSE_AT) collapsed = true;
+    if (collapsed && y < EXPAND_AT) collapsed = false;
+
+    header.classList.toggle('is-collapsed', collapsed);
+
+    // spacer must update when header changes size
+    syncSpacer();
   };
 
-  // Run once more after everything loads (images/fonts can affect height)
-  window.addEventListener("load", () => requestAnimationFrame(setBodyPadToHeader));
+  // Initial
+  syncSpacer();
+  onScroll();
 
-  update();
-  window.addEventListener("scroll", onScroll, { passive: true });
+  // Events
+  window.addEventListener('scroll', () => requestAnimationFrame(onScroll), { passive: true });
+  window.addEventListener('resize', () => requestAnimationFrame(() => { syncSpacer(); onScroll(); }), { passive: true });
 })();
