@@ -4,9 +4,9 @@
   --text:#0f172a;
   --muted:#51637a;
   --border:rgba(15,23,42,.10);
-  --accent:#f28c18; /* sunset orange */
-  --accent2:#1bb07a; /* palm green */
-  --sea:#1e7bd6; /* ocean */
+  --accent:#f28c18;   /* sunset orange */
+  --accent2:#1bb07a;  /* palm green */
+  --sea:#1e7bd6;      /* ocean */
   --shadow: 0 16px 40px rgba(2,10,26,.10);
   --radius: 18px;
   --max: 1100px;
@@ -17,7 +17,10 @@ html,body{height:100%}
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: var(--text);
+  line-height: 1.55;
 
+  /* Tropical background */
   background:
     linear-gradient(180deg, rgba(246,251,255,0.65), rgba(246,251,255,0.78)),
     url("assets/CaribbeanBG.jpg");
@@ -25,9 +28,6 @@ body{
   background-position: center top;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
-  color: var(--text);
-  line-height: 1.55;
 }
 
 a{color:inherit;text-decoration:none}
@@ -37,45 +37,37 @@ img{max-width:100%; display:block}
 .container{max-width:var(--max); margin:0 auto; padding:0 18px}
 .section{padding:56px 0}
 
-/* Skip link */
 .skip{
   position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
 }
 .skip:focus{
   left:18px; top:18px; width:auto; height:auto;
-  padding:10px 12px; background:#fff; color:#000;
-  border-radius:12px; z-index:999;
-  border:1px solid var(--border);
+  padding:10px 12px; background:#fff; color:#000; border-radius:12px; z-index:999;
 }
 
 /* =========================
-   Header (centered, smooth, simple)
+   Header (centered) + collapse
    ========================= */
 .site-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background: rgba(255,255,255,0.86);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.75));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom:1px solid var(--border);
-  transition: box-shadow 180ms ease, background 180ms ease;
-}
-
-.site-header.is-sticky{
-  background: rgba(255,255,255,0.92);
-  box-shadow: 0 10px 26px rgba(2,10,26,.10);
+  transition: padding 220ms ease, box-shadow 220ms ease, background 220ms ease;
 }
 
 .header-stack{
   max-width: var(--max);
   margin: 0 auto;
   padding: 26px 20px 18px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
-  text-align:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
 }
 
 .brand-center{
@@ -86,12 +78,19 @@ img{max-width:100%; display:block}
 }
 
 .logo-wrap{
-  position:relative;
+  position: relative;
   width: 120px;
   height: 120px;
   display:flex;
   align-items:center;
   justify-content:center;
+  margin-bottom: 2px;
+}
+
+.logo-lg{
+  width: 120px;
+  max-width: 92vw;
+  height: auto;
 }
 
 .palm-accent{
@@ -102,31 +101,12 @@ img{max-width:100%; display:block}
     radial-gradient(70px 70px at 25% 25%, rgba(27,176,122,.22), transparent 60%),
     radial-gradient(90px 90px at 80% 20%, rgba(30,123,214,.20), transparent 60%),
     radial-gradient(90px 90px at 40% 90%, rgba(242,140,24,.18), transparent 60%);
-}
-
-.palm-accent::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius: 28px;
-  opacity:.35;
-  background:
-    conic-gradient(from 200deg at 20% 25%, rgba(27,176,122,.30), transparent 35% 100%),
-    conic-gradient(from 30deg at 80% 20%, rgba(27,176,122,.24), transparent 30% 100%),
-    conic-gradient(from 120deg at 55% 80%, rgba(27,176,122,.18), transparent 30% 100%);
-  mix-blend-mode: multiply;
-}
-
-.logo-lg{
-  width: 92px;
-  height: auto;
-  display:block;
-  border-radius: 20px;
+  pointer-events:none;
 }
 
 .brand-title{
   font-weight: 1000;
-  letter-spacing: 1.1px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   font-size: 30px;
   line-height: 1.0;
@@ -141,9 +121,10 @@ img{max-width:100%; display:block}
 
 .main-nav{
   display:flex;
-  gap: 16px;
+  gap: 18px;
   flex-wrap: wrap;
   justify-content:center;
+  margin-top: 2px;
 }
 
 .main-nav a{
@@ -152,13 +133,15 @@ img{max-width:100%; display:block}
   border-radius: 999px;
   color: var(--muted);
   border: 1px solid transparent;
-  background: rgba(255,255,255,0.60);
+  background: rgba(255,255,255,0.55);
 }
+
 .main-nav a:hover{
   background: rgba(30,123,214,.10);
   color: var(--text);
   border-color: rgba(15,23,42,.10);
 }
+
 .main-nav a.active{
   background: rgba(30,123,214,.14);
   color: var(--text);
@@ -167,12 +150,48 @@ img{max-width:100%; display:block}
 
 .header-actions{
   display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+  gap: 10px;
+  margin-top: 6px;
+  flex-wrap: wrap;
   justify-content:center;
 }
 
-/* Buttons */
+.site-header.is-sticky{
+  box-shadow: 0 10px 26px rgba(2,10,26,.10);
+}
+
+/* Collapse: ONLY logo + title + sub stay */
+.site-header.is-collapsed .main-nav,
+.site-header.is-collapsed .header-actions{
+  display:none;
+}
+
+.site-header.is-collapsed .header-stack{
+  padding: 10px 20px 10px;
+  gap: 8px;
+}
+
+.site-header.is-collapsed .logo-wrap{
+  width: 56px;
+  height: 56px;
+}
+
+.site-header.is-collapsed .logo-lg{
+  width: 56px;
+}
+
+.site-header.is-collapsed .brand-title{
+  font-size: 16px;
+  letter-spacing: .9px;
+}
+
+.site-header.is-collapsed .brand-sub{
+  font-size: 12px;
+}
+
+/* =========================
+   Buttons / UI
+   ========================= */
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
   padding:10px 14px;
@@ -196,7 +215,9 @@ img{max-width:100%; display:block}
   background: linear-gradient(180deg, rgba(27,176,122,.18), rgba(27,176,122,.08));
 }
 
-/* Cards */
+/* =========================
+   Cards / Layout
+   ========================= */
 .card{
   border:1px solid var(--border);
   background: rgba(255,255,255,0.92);
@@ -206,93 +227,15 @@ img{max-width:100%; display:block}
   padding:18px;
   box-shadow: var(--shadow);
 }
-.sideCard{padding:22px; display:flex; flex-direction:column; gap:14px}
 
 .cardTitle{margin:0 0 6px; font-size:18px; font-weight:1000}
 .muted{color:var(--muted)}
+.small{font-size:13px}
 hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
 
-/* Layout grids */
 .grid3{display:grid; grid-template-columns: repeat(3,1fr); gap:14px}
 .grid2{display:grid; grid-template-columns: repeat(2,1fr); gap:14px}
 
-/* =========================
-   HERO (photo pops, text below photo, no overlap)
-   ========================= */
-.hero{padding:28px 0 10px}
-.heroGrid{
-  display:grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap:18px;
-  align-items:start;
-}
-
-/* The heroCard is ONE box: image on top, text below */
-.heroCard{
-  border:1px solid var(--border);
-  border-radius: var(--radius);
-  overflow:hidden;
-  background: rgba(255,255,255,0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: var(--shadow);
-}
-
-.heroMedia{
-  position:relative;
-  width:100%;
-  aspect-ratio: 16 / 9;   /* prevents weird gaps */
-  background:#e6f2ff;
-}
-.heroMedia img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter: saturate(1.18) contrast(1.08) brightness(1.02);
-  transform: scale(1.01);
-}
-
-/* tiny vignette for readability, doesn’t “wash out” the food */
-.heroMedia::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: radial-gradient(900px 420px at 60% 40%, rgba(0,0,0,0.00), rgba(0,0,0,0.08));
-  pointer-events:none;
-}
-
-.heroInfo{
-  padding:16px 16px 18px;
-}
-
-.kicker{
-  display:inline-flex; align-items:center; gap:10px;
-  color:var(--muted);
-  font-weight:900;
-  margin-bottom:8px;
-}
-.kicker .dot{
-  width:10px; height:10px; border-radius:99px;
-  background: var(--accent2);
-  box-shadow: 0 0 0 5px rgba(27,176,122,.14);
-}
-
-.heroTitle{
-  font-size: clamp(28px, 3.2vw, 44px);
-  font-weight: 1000;
-  line-height:1.06;
-  letter-spacing:-.7px;
-  margin:0 0 8px;
-}
-.heroSub{
-  margin:0;
-  color:rgba(15,23,42,.80);
-  font-size: 16px;
-  max-width: 60ch;
-}
-.heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-
-/* Side panel pills + kv */
 .badge{
   display:inline-flex; align-items:center; gap:10px;
   padding:9px 12px;
@@ -329,7 +272,84 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
 .kv a span{color:var(--muted); font-weight:900}
 .kv a strong{font-weight:1000}
 
-/* Menu */
+/* =========================
+   HERO (HOME)
+   ========================= */
+.hero{padding: 22px 0 10px}
+.heroGrid{
+  display:grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap:18px;
+  align-items:stretch;
+}
+
+/* Big card: image on top, content below */
+.heroCard{
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  overflow:hidden;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+/* No gap under image */
+.heroMedia{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background:#e6f2ff;
+}
+.heroMedia img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(1.10) contrast(1.05) brightness(1.03);
+}
+
+/* Content below image */
+.heroBody{
+  padding: 18px 18px 20px;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+
+.kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  color:var(--muted);
+  font-weight:900;
+}
+.kicker .dot{
+  width:10px; height:10px; border-radius:99px;
+  background: var(--accent2);
+  box-shadow: 0 0 0 5px rgba(27,176,122,.14);
+}
+
+.heroTitle{
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 1000;
+  line-height:1.06;
+  letter-spacing:-.7px;
+  margin:0;
+}
+
+.heroSub{
+  margin:0;
+  color:rgba(15,23,42,.80);
+  font-size: 16px;
+  max-width: 60ch;
+}
+
+.heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+
+/* Side card spacing */
+.sideCard{padding:22px; display:flex; flex-direction:column; gap:14px}
+
+/* =========================
+   Menu / Gallery / Map / Footer
+   ========================= */
 .menuWrap{display:grid; grid-template-columns: 1fr; gap:14px}
 .menuSection h2{margin:0 0 10px; font-size:22px; letter-spacing:-.2px}
 .menuNote{color:var(--muted); font-weight:900; font-size:13px; margin-top:6px}
@@ -346,7 +366,6 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
 .menuItem .desc{color:var(--muted); font-size:13px}
 .menuItem .price{font-weight:1000; white-space:nowrap}
 
-/* Gallery */
 .gallery{display:grid; grid-template-columns: repeat(12, 1fr); gap:12px}
 .tile{
   grid-column: span 6;
@@ -366,7 +385,6 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
   font-size:13px;
 }
 
-/* Map */
 .map{
   border:1px solid var(--border);
   border-radius: 18px;
@@ -376,7 +394,6 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
 }
 .map iframe{width:100%; height:360px; border:0}
 
-/* Footer */
 .footer{
   padding:26px 0 38px;
   color:var(--muted);
@@ -387,9 +404,10 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
   display:flex; align-items:flex-start; justify-content:space-between;
   gap:16px; flex-wrap:wrap;
 }
-.small{font-size:13px}
 
-/* Responsive */
+/* =========================
+   Responsive
+   ========================= */
 @media (max-width: 920px){
   .heroGrid{grid-template-columns: 1fr}
   .grid3{grid-template-columns: 1fr}
@@ -399,8 +417,14 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
 }
 
 @media (max-width: 768px){
-  .logo-wrap{width:110px;height:110px}
   .header-actions{flex-direction:column; width:100%}
   .header-actions .btn{width:100%}
+  .logo-wrap{width:106px;height:106px}
+  .logo-lg{width:104px}
+  .brand-title{font-size:26px}
+
+  .heroMedia{aspect-ratio: 4 / 3;}
+  .heroBody{padding:14px}
   .heroActions{justify-content:center}
+  .heroSub{font-size:15px}
 }
