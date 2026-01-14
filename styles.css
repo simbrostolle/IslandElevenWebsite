@@ -146,15 +146,21 @@ header{
 .heroMedia{
   position:relative;
   min-height: 420px;
+  overflow:hidden;            /* important */
   background:#e6f2ff;
-  display: block;
 }
+
 .heroMedia img{
+  position:absolute;          /* important */
+  inset:0;                    /* important */
   width:100%;
   height:100%;
   object-fit:cover;
+  object-position:center;
   filter: saturate(1.25) contrast(1.12) brightness(1.03);
+  transform:none;             /* remove scale that can cause weird edges */
 }
+
 
 .heroOverlay{
   position:absolute;
