@@ -392,3 +392,64 @@ hr.sep{border:none; border-top:1px solid var(--border); margin:16px 0}
   .logo-wrap{ width: 128px; height: 128px; transform: translateY(6px); }
   .logo-lg{ width: 200px; }
 }
+
+/* =========================
+   FINAL HEADER STABILITY FIX
+   ========================= */
+
+/* Lock header height so collapse doesn't cause jump */
+.site-header {
+  min-height: 190px; /* desktop expanded height */
+}
+
+.site-header.is-collapsed {
+  min-height: 96px; /* collapsed height */
+}
+
+/* Better visual centering */
+.header-stack {
+  justify-content: center;
+}
+
+/* Nav + buttons visible by default */
+.main-nav,
+.header-actions {
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    height 180ms ease,
+    margin 180ms ease;
+}
+
+/* Hide nav + actions ONLY when collapsed */
+.site-header.is-collapsed .main-nav,
+.site-header.is-collapsed .header-actions {
+  opacity: 0;
+  transform: translateY(-6px);
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Logo stays visually centered */
+.logo-wrap {
+  transform: translateY(6px);
+}
+
+/* Collapsed logo tweak */
+.site-header.is-collapsed .logo-wrap {
+  transform: translateY(0);
+}
+
+/* Mobile: smaller locked heights */
+@media (max-width: 768px) {
+  .site-header {
+    min-height: 170px;
+  }
+
+  .site-header.is-collapsed {
+    min-height: 90px;
+  }
+}
+
